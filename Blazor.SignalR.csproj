@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <IsPackable>true</IsPackable>
+    <GitSource>https://github.com/BlazorExtensions/SignalR.git</GitSource>
+    <Authors>galvesribeiro</Authors>
+    <ContentDir>wwwroot</ContentDir>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Components" Version="3.1.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="3.1.0" />
+  </ItemGroup>
+
+  <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
+    <Exec WorkingDirectory="$(ContentDir)" Command="npm install" />
+    <Exec WorkingDirectory="$(ContentDir)" Command="npm run build" />
+  </Target>
+</Project>
